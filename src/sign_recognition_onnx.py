@@ -56,6 +56,7 @@ class HandSignRecognizer:
         x = x[start_x:start_x + crop_size, start_y:start_y + crop_size, :]
         x = cv2.resize(x, (224, 224))
         x = np.expand_dims(x, axis=0)
+        x = np.transpose(x, (0, 3, 1, 2))
         return x
     
     
@@ -69,7 +70,7 @@ class HandSignRecognizer:
     
 if __name__ == '__main__':
     model = HandSignRecognizer()
-    img = np.random.rand(3, 224, 224)
+    img = np.random.rand(3, 640, 480)
     output = model(img)
     
     print(output)
