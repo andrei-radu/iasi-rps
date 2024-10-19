@@ -10,9 +10,9 @@ class Display:
         self.pos = (50, 50)
         self.text_options ={
             'fontFace': cv2.FONT_HERSHEY_PLAIN,
-            'fontScale': 1,
-            'color': (255, 0, 0),
-            'thickness': 1,
+            'fontScale': 2,
+            'color': (0, 255, 0),
+            'thickness': 2,
             'lineType': 2,
         }
 
@@ -22,7 +22,7 @@ class Display:
 
         Args:
             image (np.ndarray): Image to display.
-            text (_type_, optional): _description_. Defaults to None.
+            text (str or None, optional): Text to overlay on the image. Defaults to None.
         """
         if text is not None:
             text = text.split('\n')

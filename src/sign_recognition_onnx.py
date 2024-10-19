@@ -5,6 +5,7 @@ import onnxruntime as ort
 
 class HandSignRecognizer:
     def __init__(self):
+        """ Initialize the HandSignRecognizer object properties. """
         self.targets = {
             1: "call",
             2: "dislike",
@@ -33,8 +34,10 @@ class HandSignRecognizer:
         
 
     def __get_model(self, path='models/MobileNetV3FF_small.onnx', num_classes=18):
-        provider = ['CPUExecutionProvider']
+        print(f"[INFO] Loading model from {path} ...")
+        provider = ['CUDAExecutionProvider']
         ort_session = ort.InferenceSession(path, providers=provider)
+        print("[DONE] Model loaded successfully!")
         return ort_session
     
     

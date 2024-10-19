@@ -2,7 +2,9 @@ import numpy as np
 
 
 class Game:
+    """ Base class for games. """
     def __init__(self):
+        """ Initialize the game object properties. """
         self.round_idx = 1
         self.scores = {
             'player': 0,
@@ -11,11 +13,18 @@ class Game:
         }
 
     def round(self):
+        """ Play a round of the game. """
         pass
 
 
-class RockPaperScisors(Game):
+class RockPaperscissors(Game):
+    """ Class for Rock-Paper-Scissors game. """
     def __init__(self, computer_strategy='random'):
+        """ Initialize the Rock-Paper-Scissors game object properties.
+
+        Args:
+            computer_strategy (str, optional): Strategy for computer player. Defaults to 'random'.
+        """
         super().__init__()
 
         self.strategy = computer_strategy
@@ -26,10 +35,10 @@ class RockPaperScisors(Game):
             'stop': 'paper',
             'palm': 'paper',
 
-            'two up': 'scisors',
-            'two up inverted': 'scisors',
-            'peace': 'scisors',
-            'peace inverted': 'scisors',
+            'two up': 'scissors',
+            'two up inverted': 'scissors',
+            'peace': 'scissors',
+            'peace inverted': 'scissors',
         }
 
         self.allowed_signs = list(self.sign2move.keys())
@@ -40,18 +49,18 @@ class RockPaperScisors(Game):
         if player == 'rock':
             if computer == 'paper':
                 return 'computer'
-            elif computer == 'scisors':
+            elif computer == 'scissors':
                 return 'player'
             return 'draw'
         
         elif player == 'paper':
-            if computer == 'scisors':
+            if computer == 'scissors':
                 return 'computer'
             elif computer == 'rock':
                 return 'player'
             return 'draw'
         
-        else:  # player == 'scisors'
+        else:  # player == 'scissors'
             if computer == 'rock':
                 return 'computer'
             elif computer == 'paper':
@@ -67,7 +76,15 @@ class RockPaperScisors(Game):
 
 
 
-    def round(self, player_sign):
+    def round(self, player_sign: str) -> dict:
+        """ Play a round of the Rock-Paper-Scissors game.
+
+        Args:
+            player_sign (str): Sign chosen by the player, which is translated to a move.
+
+        Returns:
+            dict: Dictionary containing the player's choice, computer's choice, and the winner.
+        """
         if player_sign not in self.allowed_signs:
             return
 
@@ -86,7 +103,7 @@ class RockPaperScisors(Game):
 
 if __name__ == '__main__':
 
-    game = RockPaperScisors()
+    game = RockPaperscissors()
 
     for i in range(10_000):
         player_sign = np.random.choice(game.allowed_signs)

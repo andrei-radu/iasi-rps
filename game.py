@@ -16,19 +16,20 @@ if __name__ == '__main__':
     last_state = "ok"  # placeholder for last recognized sign
     text = None
 
+    frame_counter = 0
     while True:
         img = camera.get_image()
-        sign = sign_recog(img)
         
-        if sign != last_state:
-            last_state = sign
-
-            results = game.round(sign)
-            if results is None:
-                continue
-            
-            text = f"Player: {results['player_choice']}\n"
-            text += f"Computer: {results['computer_choice']}\n"
-            text += f"Winner is {results['who_wins']}\n\n"
+        if frame_counter % 10 == 0:
+            sign = sign_recog(img)
+        
+        results = game.round(sign)
+        if results is None:
+            continue
+        
+        text = f"Player: {results['player_choice']}\n"
+        text += f"Computer: {results['computer_choice']}\n"
+        text += f"Winner is {results['who_wins']}\n\n"
 
         display.show(img, text)
+        frame_counter += 1
