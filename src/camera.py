@@ -37,13 +37,12 @@ class Camera:
         """
         pipeline = (
             f"gst-launch-1.0 nvarguscamerasrc sensor-id={self.device_id} ! "
-            "nvoverlaysink ! "
             "video/x-raw(memory:NVMM), "
             f"width={self.width}, "
             f"height={self.height}, "
             "format=(string)NV12, "
             f"framerate={self.fps}/1 ! "
-            "nvvidconv flip-method={(2 if self.flip else 0)} ! "
+            f"nvvidconv flip-method={(2 if self.flip else 0)} ! "
             "video/x-raw, format=(string)BGRx ! videoconvert ! "
             "video/x-raw, format=(string)BGR ! appsink"
         )
@@ -82,6 +81,7 @@ if __name__ == '__main__':
     img = cam.get_image()
     
     plt.imshow(img)
+    plt.axis('off')
     plt.show()
     
     cam.stop()

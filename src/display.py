@@ -23,3 +23,20 @@ class Display:
         cv2.imshow('video-feed', image)
         cv2.waitKey(1)
 
+
+
+if __name__ == '__main__':
+    from camera import Camera
+    
+    cam = Camera()
+    cam.start()
+    
+    display = Display()
+    
+    
+    while True:
+        img = cam.get_image()
+        display.show(img)
+        
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
