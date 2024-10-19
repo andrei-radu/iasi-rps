@@ -44,6 +44,12 @@ class HandSignRecognizer:
         return output
     
     
+    def __call__(self, x: np.ndarray):
+        logits = self.predict(x)[0]
+        class_ = np.argmax(logits)
+        return self.targets[class_]
+    
+    
     
 
 
