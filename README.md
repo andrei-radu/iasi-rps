@@ -21,7 +21,7 @@ To be added
 
 First, check if the camera is working by running the following command:
 ```bash
-gst-launch-1.0 nvarguscamerasrc-1.0 ! nvoverlaysink
+gst-launch-1.0 nvarguscamerasrc ! nvoverlaysink
 ```
 
 If the camera is working, you should see a window with the camera feed. Press `Ctrl+C` to close the window.
@@ -53,6 +53,10 @@ Run the following command in the root directory of the project to download the m
 wget -O models/MobileNetV3FF_small.pth 'https://ctipub-my.sharepoint.com/:u:/g/personal/andrei_radu_danila_stud_etti_upb_ro/EZXgxLpmO7hOt4GqmMwleXQBE509Mq81vP7F6khJg4MgaQ?e=0VA5NQ&download=1'
 ```
 
+ONNX version of the model can be downloaded with:
+```bash
+wget -O models/MobileNetV3FF_small.onnx 'https://ctipub-my.sharepoint.com/:u:/g/personal/andrei_radu_danila_stud_etti_upb_ro/EToWxBwWudNGqGjrAGovwNIB9V54-Q7b9UdE1nu62MuEcg?e=hWaclM&download=1'
+```
 
 
 
