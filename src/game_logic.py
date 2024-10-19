@@ -17,7 +17,7 @@ class Game:
         pass
 
 
-class RockPaperscissors(Game):
+class RockPaperScissors(Game):
     """ Class for Rock-Paper-Scissors game. """
     def __init__(self, computer_strategy='random'):
         """ Initialize the Rock-Paper-Scissors game object properties.
