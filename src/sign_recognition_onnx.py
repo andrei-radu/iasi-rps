@@ -4,7 +4,8 @@ import onnxruntime as ort
 
 if __name__ == '__main__':
     
-    ort_session = ort.InferenceSession("models/MobileNetV3FF_small.onnx")
+    provider = ['TensorrtExecutionProvider']
+    ort_session = ort.InferenceSession("models/MobileNetV3FF_small.onnx", providers=provider)
     
     input_name = ort_session.get_inputs()[0].name
     output_name = ort_session.get_outputs()[0].name
