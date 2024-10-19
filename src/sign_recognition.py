@@ -102,12 +102,14 @@ class HandSignRecognizer:
         }
 
         self.model = self.__get_model()
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
     def __get_model(self, path='models/MobileNetV3FF_small.pth', num_classes=18, size='small'):
         pack = torch.load(path, map_location=torch.device('cpu'))
         model = MobileNetV3(num_classes=num_classes, size=size, ff=True)
         model.load_state_dict(pack['state_dict'])
+        model.to(self.device)
         model = model.eval()
         return model
     
@@ -118,8 +120,9 @@ class HandSignRecognizer:
         img = torch.from_numpy(img).permute(2, 0, 1)
         img = torchvision.transforms.functional.center_crop(img, (crop_size*224, crop_size*224))
         img = torchvision.transforms.functional.resize(img, (224, 224))
-        img = img.unsqueeze(0).float() 
-        pred = self.model(img)
+        img = img.unsqueeze(0).float()
+        with torch.no_grad():
+            pred = self.model(img.to(self.device))
         gesture = torch.argmax(pred['gesture'], dim=1).item()
         gesture = self.targets[gesture+1]
         return gesture
@@ -132,6 +135,7 @@ if __name__ == '__main__':
 
 
     cam = Camera()
+    cam.start()
     disp = Display()
     hand_recog = HandSignRecognizer()
 

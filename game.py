@@ -9,6 +9,7 @@ from src.game_logic import RockPaperScisors
 if __name__ == '__main__':
 
     camera = Camera()
+    camera.start()
     display = Display()
     sign_recog = HandSignRecognizer()
     game = RockPaperScisors()

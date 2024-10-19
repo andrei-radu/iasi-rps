@@ -31,6 +31,9 @@ If the camera is not working, make sure the pins are configured correctly. Use t
 sudo /opt/nvidia/jetson-io/jetson-io.py
 ```
 
+### Install PyTorch and Torchvision
+To run this project, you need to install PyTorch and Torchvision. You can install them by following the oficial instructions from [here](https://qengineering.eu/install-pytorch-on-jetson-nano.html). This project was tested on PyTorch 1.9.0 and Torchvision 0.10.0, builded from wheel, which are the versions that should be installed.
+
 
 ### Clone the repository
 Jetson Nano should already have the git-cli installed. If not, run the following command:

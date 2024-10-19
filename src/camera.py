@@ -36,7 +36,7 @@ class Camera:
             RuntimeError: If the camera could not be opened.
         """
         pipeline = (
-            f"gst-launch-1.0 nvarguscamerasrc sensor-id={self.device_id} ! "
+            f"nvarguscamerasrc sensor-id={self.device_id} ! "
             "video/x-raw(memory:NVMM), "
             f"width={self.width}, "
             f"height={self.height}, "
@@ -52,10 +52,10 @@ class Camera:
         _, _ = self.cap.read()  # activate camera
 
     def get_image(self) -> np.ndarray:
-        """_summary_
+        """ Get the image from the camera.
 
         Returns:
-            _type_: _description_
+            np.ndarray: Image from the camera.
         """
         _, image = self.cap.read()
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

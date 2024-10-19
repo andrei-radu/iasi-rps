@@ -1,19 +1,29 @@
 import cv2
-
+import numpy as np
+from typing import Union
 
 class Display:
-    def __init__(self):
+    def __init__(self) -> None:
+        """
+        Initialize the display object properties. 
+        """
         self.pos = (50, 50)
         self.text_options ={
             'fontFace': cv2.FONT_HERSHEY_PLAIN,
             'fontScale': 1,
-            'color': (0, 0, 255),
+            'color': (255, 0, 0),
             'thickness': 1,
             'lineType': 2,
         }
 
 
-    def show(self, image, text=None):
+    def show(self, image: np.ndarray, text: Union[str, None] = None) -> None:
+        """ Display the image with optional text overlay.
+
+        Args:
+            image (np.ndarray): Image to display.
+            text (_type_, optional): _description_. Defaults to None.
+        """
         if text is not None:
             text = text.split('\n')
             for idx, t in enumerate(text):
