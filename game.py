@@ -1,5 +1,3 @@
-import time
-
 from src.camera import Camera
 from src.display import Display
 # from src.sign_recognition import HandSignRecognizer
@@ -20,7 +18,7 @@ if __name__ == '__main__':
 
     while True:
         img = camera.get_image()
-        sign = sign_recog.predict(img)
+        sign = sign_recog(img)
         
         if sign != last_state:
             last_state = sign
