@@ -1,3 +1,4 @@
+import cv2
 import numpy as np
 import onnxruntime as ort
 
@@ -38,35 +39,38 @@ class HandSignRecognizer:
     
     
     def predict(self, x: np.ndarray):
-        x = x.astype(np.float32)
-        x = np.expand_dims(x, axis=0)
         output = self.model.run([self.output_name], {self.input_name: x})
         return output
     
     
+    def process_image(self, x: np.ndarray):
+        # convert to float32
+        x = x.astype(np.float32)
+        x = x / 255.0
+        
+        # center crop and resize to 224px
+        h, w, c = x.shape
+        crop_size = min(h, w)
+        start_x = h // 2 - crop_size // 2
+        start_y = w // 2 - crop_size // 2
+        x = x[start_x:start_x + crop_size, start_y:start_y + crop_size, :]
+        x = cv2.resize(x, (224, 224))
+        x = np.expand_dims(x, axis=0)
+        return x
+    
+    
     def __call__(self, x: np.ndarray):
+        x = self.process_image(x)
         logits = self.predict(x)[0]
         class_ = np.argmax(logits)
-        return self.targets[class_]
+        return self.targets[class_ + 1]
     
     
     
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     model = HandSignRecognizer()
     img = np.random.rand(3, 224, 224)
-    output = model.predict(img)
+    output = model(img)
     
     print(output)
     
