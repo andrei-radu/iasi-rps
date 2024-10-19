@@ -2,7 +2,8 @@ import time
 
 from src.camera import Camera
 from src.display import Display
-from src.sign_recognition import HandSignRecognizer
+# from src.sign_recognition import HandSignRecognizer
+from src.sign_recognition_onnx import HandSignRecognizer
 from src.game_logic import RockPaperScisors
 
 
