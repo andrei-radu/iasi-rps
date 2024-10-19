@@ -22,7 +22,10 @@ if __name__ == '__main__':
         
         if frame_counter % 10 == 0:
             sign = sign_recog(img)
-            results = game.round(sign)
+            
+            if sign != last_state:
+                last_state = sign
+                results = game.round(sign)
 
         if results is None:
             continue
