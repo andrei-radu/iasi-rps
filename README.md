@@ -2,14 +2,6 @@
 
 This project represents one of the **IASI** laboratories (ro: _Inteligență artificială pentru sisteme integrate_, en: _Artificial Inteligence for Integrated Systems_), for the **BIOSINF** (ro: _Tehnologii multimedia în aplicații de biometrie și securitatea informației_ , en: _Multimedia Technologies in Biometrics and Information Security Applications_) master program.
 
-## Developing
-This repo is under development. Please come back later.
-
-
-## Description
-To be added
-
-
 ## Installation
 
 ### Check that the camera is working
@@ -50,6 +42,12 @@ git clone https://github.com/andrei-radu/iasi-rps.git
 Run the following command in the root directory of the project to download the model:
 ```bash
 wget -O models/MobileNetV3FF_small.onnx 'https://ctipub-my.sharepoint.com/:u:/g/personal/andrei_radu_danila_stud_etti_upb_ro/EcVw-er6EQxGnJHCbpn9whcBA-zFJEfCabobcuHprMTlAg?e=rzeGU1&download=1'
+```
+
+## How to run
+To run this project, simply call the main function by using the following:
+```bash
+python3 game.py
 ```
 
 
