@@ -1,4 +1,4 @@
-# Rock-Paper-Scisor on Jetson Nano
+# Rock-Paper-Scissor on Jetson Nano
 
 This project represents one of the **IASI** laboratories (ro: _Inteligență artificială pentru sisteme integrate_, en: _Artificial Inteligence for Integrated Systems_), for the **BIOSINF** (ro: _Tehnologii multimedia în aplicații de biometrie și securitatea informației_ , en: _Multimedia Technologies in Biometrics and Information Security Applications_) master program.
 
@@ -29,7 +29,8 @@ sudo /opt/nvidia/jetson-io/jetson-io.py
 ### Install ONNX Runtime
 The model is in the ONNX format, so we need to install the ONNX Runtime. Run the following commands to install the ONNX Runtime:
 ```bash
-pip3 install onnxruntime
+wget -O onnx.whl https://nvidia.box.com/shared/static/pmsqsiaw4pg9qrbeckcbymho6c01jj4z.whl
+pip3 install onnx.whl
 ```
 
 
@@ -54,5 +55,5 @@ wget -O models/MobileNetV3FF_small.onnx 'https://ctipub-my.sharepoint.com/:u:/g/
 
 
 ## Acknowledgments
-TODO: add github repo for mobilnet
+[HaGRID](https://gitlab.ai.cloud.ru/rndcv/hagrid)
 
