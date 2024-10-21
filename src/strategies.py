@@ -4,7 +4,11 @@ class Strategy:
     """ Class for computer strategy. """
     def __init__(self):
         """ Initialize the strategy object properties. """
-        pass
+        self.moves = [
+            'rock',
+            'paper',
+            'scissors',
+        ]
 
     def move(self):
         """ Return the move. """
@@ -24,7 +28,7 @@ class RandomStrategy(Strategy):
 
     def move(self):
         """ Return the move. """
-        return random.choice(['rock', 'paper', 'scissors'])
+        return random.choice(self.moves)
 
     def update(self, player, computer):
         """ Update the strategy based on the last round. """
