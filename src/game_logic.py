@@ -1,4 +1,4 @@
-from strategies import RandomStrategy
+from src.strategies import RandomStrategy
 
 class Game:
     """ Base class for games. """
