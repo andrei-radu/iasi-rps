@@ -17,6 +17,7 @@ if __name__ == '__main__':
     text = None
 
     frame_counter = 0
+    results = {}
     while True:
         img = camera.get_image()
         
@@ -27,7 +28,7 @@ if __name__ == '__main__':
                 last_state = sign
                 results = game.round(sign)
 
-        if results is None:
+        if 'error' in results:
             continue
         
         text = f"Player: {results['player_choice']}\n"

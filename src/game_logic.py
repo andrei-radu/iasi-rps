@@ -1,5 +1,4 @@
-import numpy as np
-
+from strategies import RandomStrategy
 
 class Game:
     """ Base class for games. """
@@ -12,9 +11,9 @@ class Game:
             'draw': 0,
         }
 
-    def round(self):
+    def round(self, *args, **kwargs) -> dict:
         """ Play a round of the game. """
-        pass
+        return {'error': 'Not implemented'}
 
 
 class RockPaperScissors(Game):
@@ -27,7 +26,10 @@ class RockPaperScissors(Game):
         """
         super().__init__()
 
-        self.strategy = computer_strategy
+        if computer_strategy == 'random':
+            self.strategy = RandomStrategy()
+        else:
+            raise ValueError('Invalid computer strategy')
 
         self.sign2move = {
             'fist': 'rock',
@@ -44,7 +46,7 @@ class RockPaperScissors(Game):
         self.allowed_signs = list(self.sign2move.keys())
         self.choices = list(set(self.sign2move.values()))
 
-    
+
     def __decide_who_wins(self, player, computer):
         if player == 'rock':
             if computer == 'paper':
@@ -52,28 +54,20 @@ class RockPaperScissors(Game):
             elif computer == 'scissors':
                 return 'player'
             return 'draw'
-        
+
         elif player == 'paper':
             if computer == 'scissors':
                 return 'computer'
             elif computer == 'rock':
                 return 'player'
             return 'draw'
-        
+
         else:  # player == 'scissors'
             if computer == 'rock':
                 return 'computer'
             elif computer == 'paper':
                 return 'player'
             return 'draw'
-
-
-    def __computer_choice(self):
-        if self.strategy == 'random':
-            return np.random.choice(self.choices)
-        else:
-            raise NotImplementedError(f"Required strategy {self.strategy} is not available")
-
 
 
     def round(self, player_sign: str) -> dict:
@@ -86,10 +80,10 @@ class RockPaperScissors(Game):
             dict: Dictionary containing the player's choice, computer's choice, and the winner.
         """
         if player_sign not in self.allowed_signs:
-            return
+            return {'error': 'Invalid sign'}
 
         player_choice = self.sign2move[player_sign]
-        computer_choice = self.__computer_choice()
+        computer_choice = self.strategy()
         who_wins = self.__decide_who_wins(player_choice, computer_choice)
         self.scores[who_wins] += 1
         self.round_idx += 1
@@ -102,8 +96,10 @@ class RockPaperScissors(Game):
 
 
 if __name__ == '__main__':
+    import numpy as np
 
-    game = RockPaperscissors()
+
+    game = RockPaperScissors()
 
     for i in range(10_000):
         player_sign = np.random.choice(game.allowed_signs)
