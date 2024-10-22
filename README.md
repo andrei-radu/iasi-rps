@@ -84,5 +84,5 @@ python3 main.py --framework torch
 
 
 ## Acknowledgments
-[HaGRID](https://gitlab.ai.cloud.ru/rndcv/hagrid)
+- [HaGRID](https://gitlab.ai.cloud.ru/rndcv/hagrid), which is under the CC-by-SA licence.
 
