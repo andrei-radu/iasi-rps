@@ -63,7 +63,7 @@ For the `.pth` model (optional), run use this command instead:
 ```bash
 wget -O models/MobileNetV3FF_small.pth 'https://ctipub-my.sharepoint.com/:u:/g/personal/andrei_radu_danila_stud_etti_upb_ro/EZXgxLpmO7hOt4GqmMwleXQBE509Mq81vP7F6khJg4MgaQ?e=4hC87T&download=1`
 ```
-Keep in mind that in order to use the `.pth` model, you need to have the `torch` and `torchvision` packages installed.  You can install them by following the instructions from [here](https://qengineering.eu/install-pytorch-on-jetson-nano.html). This project was tested on PyTorch 1.9.0 and Torchvision 0.10.0, builded from wheel, which are the versions that should be installed.
+Keep in mind that in order to use the `.pth` model, you need to have the `torch` and `torchvision` packages installed.  You can install them by following the instructions from [here](https://qengineering.eu/install-pytorch-on-jetson-nano.html). This project was tested on PyTorch 1.9.0 and Torchvision 0.10.0, builded from wheel, which are the versions that should be installed. For desktop instalation, please refer to the official PyTorch [website](https://pytorch.org/get-started/locally/).
 
 
 ## How to run
