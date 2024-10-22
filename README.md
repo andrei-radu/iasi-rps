@@ -1,4 +1,4 @@
-# Rock-Paper-Scissor on Jetson Nano
+# Rock-Paper-Scissors on Jetson Nano
 
 This project represents one of the **IASI** laboratories (ro: _Inteligență artificială pentru sisteme integrate_, en: _Artificial Inteligence for Integrated Systems_), for the **BIOSINF** (ro: _Tehnologii multimedia în aplicații de biometrie și securitatea informației_ , en: _Multimedia Technologies in Biometrics and Information Security Applications_) master program.
 
