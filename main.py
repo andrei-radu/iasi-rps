@@ -1,3 +1,5 @@
+import argparse
+
 from src.camera import Camera
 from src.display import Display
 # from src.sign_recognition import HandSignRecognizer
@@ -7,7 +9,11 @@ from src.game_logic import RockPaperScissors
 
 if __name__ == '__main__':
 
-    camera = Camera()
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('-p', '--platform', type=str, default='jetson', help='Choose the platform: jetson or desktop')
+    args = arg_parser.parse_args()
+
+    camera = Camera(platform=args.platform)
     camera.start()
     display = Display()
     sign_recog = HandSignRecognizer()

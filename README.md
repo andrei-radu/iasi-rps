@@ -18,6 +18,15 @@ If the camera is not working, make sure the pins are configured correctly. Use t
 sudo /opt/nvidia/jetson-io/jetson-io.py
 ```
 
+
+### Install and update pip package manager 
+Run the following commands to install and update the pip package manager:
+```bash
+sudo apt-get install python3-pip
+pip3 install --upgrade pip
+```
+
+
 ### Install ONNX Runtime
 The model is in the ONNX format, so we need to install the ONNX Runtime. Run the following commands to install the ONNX Runtime:
 ```bash
