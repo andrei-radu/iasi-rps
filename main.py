@@ -2,21 +2,31 @@ import argparse
 
 from src.camera import Camera
 from src.display import Display
-# from src.sign_recognition import HandSignRecognizer
-from src.sign_recognition_onnx import HandSignRecognizer
 from src.game_logic import RockPaperScissors
+
+
+def get_model(framework):
+    if framework == 'onnx':
+        from src.sign_recognition_onnx import HandSignRecognizer
+    elif framework == 'torch':
+        from src.sign_recognition import HandSignRecognizer
+    else:
+        raise ValueError('Invalid framework. Must be onnx or torch')
+    return HandSignRecognizer()
+
 
 
 if __name__ == '__main__':
 
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('-p', '--platform', type=str, default='jetson', help='Choose the platform: jetson or desktop')
+    arg_parser.add_argument('-f', '--framework', type=str, default='onnx', help='Choose the framework: onnx or torch')
     args = arg_parser.parse_args()
-
+        
     camera = Camera(platform=args.platform)
     camera.start()
     display = Display()
-    sign_recog = HandSignRecognizer()
+    sign_recog = get_model(args.framework)
     game = RockPaperScissors()
 
     last_state = "ok"  # placeholder for last recognized sign
